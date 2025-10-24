@@ -25,7 +25,10 @@ public class TP1_manipNombresInt_Bourguet {
         int nombre2 = scanner.nextInt();
 
         System.out.println("Vous avez saisi : " + nombre1 + " et " + nombre2);
-
+        System.out.println("Le produits des 2 nombres est :" + (nombre1*nombre2)+ "");
+        System.out.println("La différence des 2 nombres est :" + (nombre1-nombre2)+ "");
+        System.out.println("La somme des 2 nombres est :" + (nombre1+nombre2)+ "");
+        System.out.println("La quotient des 2 nombres est :" + (nombre1/nombre2)+ "Le reste de cette opération est:"+ nombre1%nombre2 +"");
         scanner.close();
     }
 }
