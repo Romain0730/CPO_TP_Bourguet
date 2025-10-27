@@ -45,15 +45,15 @@ public static double KelvinVersCelcius(double tKelvin) {
     return tKelvin -273.15;
 }
 public static double FarenheitVersCelcius( double tFCelcius){
-    return ((tFCelcius*9/5)+32) ;
+    return ((tFCelcius-32)*5/9) ;
 }
 public static double CelciusVersFarenheit( double tCelciusF) {
-    return ((tCelciusF/9/5)+32) ;
+    return ((tCelciusF*9/5)+32) ;
 }
 public static double KelvinVersFarenheit( double tKelvinF) {
-    return (((tKelvinF-273.15)/9/5)+32);
+    return (((tKelvinF-273.15)*9/5)+32);
 }
 public static double FarenheitVersKelvin( double tFKelvin) {
-    return (tFKelvin*9/5)+32+273.15 ;
+    return CelciusVersKelvin(FarenheitVersCelcius(tFKelvin));
 }
 }
