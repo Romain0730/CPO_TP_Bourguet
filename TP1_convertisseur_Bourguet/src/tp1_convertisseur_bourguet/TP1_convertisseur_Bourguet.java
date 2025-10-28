@@ -18,23 +18,64 @@ public class TP1_convertisseur_Bourguet {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        System.out.print("Entrez la Temperature reel : ");
-        double nombre1 = scanner.nextDouble();
-        System.out.println("La température 1 est:" +nombre1+"");
-        System.out.println("La température en Kelvin est: " +(nombre1+273.15)+"");
+        System.out.print("Bonjour! Saisissez une valeur de température");
+        double valeur = scanner.nextDouble();
         
-        double kelvin = CelciusVersKelvin(nombre1);
-        System.out.println("Celsius → Kelvin : " + kelvin);
+        System.out.println("Saisissez la conversion que vous souhaitez effectuer :");
+        System.out.println("1) De Celsius vers Kelvin");
+        System.out.println("2) De Kelvin vers Celsius");
+        System.out.println("3) De Celsius vers Fahrenheit");
+        System.out.println("4) De Fahrenheit vers Celsius");
+        System.out.println("5) De Kelvin vers Fahrenheit");
+        System.out.println("6) De Fahrenheit vers Kelvin");
 
-        double fahrenheit = CelciusVersFarenheit(nombre1);
-        System.out.println("Celsius → Fahrenheit : " + fahrenheit);
+        System.out.print("Votre choix : ");
+        int choix = scanner.nextInt();
 
-        double celsiusRetour = KelvinVersCelcius(kelvin);
-        System.out.println("Kelvin → Celsius : " + celsiusRetour);
+        double resultat = 0;        // Pour stocker le résultat
+        String uniteDepart = "";    // Unité d’origine
+        String uniteArrivee = "";   // Unité de destination
 
-        double kelvinDepuisF = FarenheitVersKelvin(fahrenheit);
-        System.out.println("Fahrenheit → Kelvin : " + kelvinDepuisF);
+        // Sélection du bon calcul selon le choix
+        switch (choix) {
+            case 1:
+                resultat = CelciusVersKelvin(valeur);
+                uniteDepart = "Celsius";
+                uniteArrivee = "Kelvin";
+                break;
+            case 2:
+                resultat = KelvinVersCelcius(valeur);
+                uniteDepart = "Kelvin";
+                uniteArrivee = "Celsius";
+                break;
+            case 3:
+                resultat = CelciusVersFarenheit(valeur);
+                uniteDepart = "Celsius";
+                uniteArrivee = "Fahrenheit";
+                break;
+            case 4:
+                resultat = FarenheitVersCelcius(valeur);
+                uniteDepart = "Fahrenheit";
+                uniteArrivee = "Celsius";
+                break;
+            case 5:
+                resultat = KelvinVersFarenheit(valeur);
+                uniteDepart = "Kelvin";
+                uniteArrivee = "Fahrenheit";
+                break;
+            case 6:
+                resultat = FarenheitVersKelvin(valeur);
+                uniteDepart = "Fahrenheit";
+                uniteArrivee = "Kelvin";
+                break;
+            default:
+                System.out.println("Choix invalide !");
+                scanner.close();
+                return;
+        }
 
+        // Affichage du résultat formaté
+        System.out.println(valeur + " degrés " + uniteDepart + " est égal à " + resultat + " degrés " + uniteArrivee + ".");
         scanner.close();
     }
 public static double CelciusVersKelvin (double tCelcius) { 
