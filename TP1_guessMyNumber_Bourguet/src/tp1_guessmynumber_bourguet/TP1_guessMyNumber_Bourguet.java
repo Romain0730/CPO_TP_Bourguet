@@ -19,13 +19,29 @@ public class TP1_guessMyNumber_Bourguet {
     Random generateurAleat = new Random();
     Scanner scanner = new Scanner(System.in);
     
+    int max=100;
+    int coupsMax = Integer.MAX_VALUE;
+    System.out.println("choisissez le niveau de difficulté : facile, normal, difficile");
+    String difficulte = scanner.nextLine().toLowerCase();
+    
+    switch (difficulte) {
+        case "facile":
+            coupsMax = 20;
+            break;
+        case "normal":
+            coupsMax = 15;
+            break;
+        case "difficile":
+            coupsMax = 10;
+            break;
+    }
         int m = generateurAleat.nextInt(101);
     System.out.println("Saisissez un nombre entre 0 et 100");
-    int essais = 1;
+    int essais = 0;
     
     int nombre = scanner.nextInt();
     
-    while( m!=nombre) {
+    while( m!=nombre && essais < coupsMax) {
     if (m < nombre) {
             System.out.println("valeur saisi trop grande");
     }
@@ -37,10 +53,16 @@ public class TP1_guessMyNumber_Bourguet {
     nombre = scanner.nextInt();
     essais++;
     }
-    System.out.println("Bravo vous avez gagne");
+    if (essais == coupsMax){
+        System.out.println("Nombre de max atteint. Perdu");
+    }
+    if (essais != coupsMax){
+        System.out.println("Bravo vous avez gagne");
+   
     System.out.println("vous avez fait" +essais + "tentatives");
     scanner.close();
     }
     }
+}
     
 
