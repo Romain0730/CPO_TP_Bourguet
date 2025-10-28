@@ -4,6 +4,7 @@
  */
 package tp1_guessmynumber_bourguet;
 import java.util.Random;
+import java.util.Scanner;
 /**
  *
  * @author romai
@@ -15,12 +16,30 @@ public class TP1_guessMyNumber_Bourguet {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Random generateurAleat = new Random();
-        System.out.println("voici 5 nombres aléatoires entre 0 et 100:");
-    for (int i=1; i<=5; i++){
-        int n = generateurAleat.nextInt(101);
-        System.out.println("Nombre aléatoire " +i+ " : " +n);
+    Random generateurAleat = new Random();
+    Scanner scanner = new Scanner(System.in);
+    
+        int m = generateurAleat.nextInt(101);
+    System.out.println("Saisissez un nombre entre 0 et 100");
+    int essais = 1;
+    
+    int nombre = scanner.nextInt();
+    
+    while( m!=nombre) {
+    if (m < nombre) {
+            System.out.println("valeur saisi trop grande");
     }
+    else {
+       System.out.println("valeur saisie trop petite");
+    }
+    
+    System.out.print("essayez encore: ");
+    nombre = scanner.nextInt();
+    essais++;
+    }
+    System.out.println("Bravo vous avez gagne");
+    System.out.println("vous avez fait" +essais + "tentatives");
+    scanner.close();
     }
     }
     
