@@ -22,7 +22,15 @@ public class TP2_Bieres_BourguetN {
         uneBiere.ouverte = false;
 
         uneBiere.lireEtiquette();
-    }
+        
+        BouteilleBiere deuxBiere = new BouteilleBiere();
+        deuxBiere.nom = "Leffe";
+        deuxBiere.degreAlcool = 6.6;
+        deuxBiere.brasserie = "Abbaye de Leffe";
+        deuxBiere.ouverte = false;
+        
+        deuxBiere.lireEtiquette();
+    
 
     }
     
