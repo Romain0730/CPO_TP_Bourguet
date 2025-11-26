@@ -17,6 +17,7 @@ int compteur=0;
     /**
      * Creates new form Interface
      */
+
     public Interface() {
         initComponents();
         zone_de_texte.setVisible(false);
@@ -28,11 +29,25 @@ int compteur=0;
         new Questions("qui est le plus fort?","Pogi","VDP","Pinot","RomainBardet_Jel'aime",4),
         new Questions("meilleur club de foot?", "FC Marseille","QSG", "L'OL","FC Lapaillade",3),
     };
-    
+
+    public Questions(String question, String rep1, String rep2, String rep3, String rep4, int bonneReponse) {
+        this.question = question;
+        this.proposition1 = rep1;
+        this.proposition2 = rep2;
+        this.proposition3 = rep3;
+        this.proposition4 = rep4;
+        this.bonneReponse = bonneReponse;
+    }
     
 }
+
+    
+
+
+    
+
  
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
