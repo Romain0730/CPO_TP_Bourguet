@@ -10,12 +10,18 @@
 public class main_cadenas extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(main_cadenas.class.getName());
-
+    Combinaison combiTestee;
+    Combinaison combiSecrete;
     /**
      * Creates new form main_cadenas
      */
     public main_cadenas() {
+        int a,b,c,d;
         initComponents();
+        a=(int) (Math.random()*10);
+        b=(int) (Math.random()*10);
+        c=(int) (Math.random()*10);
+        d=(int) (Math.random()*10);
     }
 
     /**
@@ -58,7 +64,7 @@ public class main_cadenas extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         texte_intro.setText("Trouvez le bon code en moins de 5 tentatives!");
-        getContentPane().add(texte_intro, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 25, -1, -1));
+        getContentPane().add(texte_intro, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
         up_chiffre_1.setText("/\\");
             getContentPane().add(up_chiffre_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
