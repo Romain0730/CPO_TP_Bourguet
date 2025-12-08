@@ -12,6 +12,11 @@ public class main_cadenas extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(main_cadenas.class.getName());
     Combinaison combiTestee;
     Combinaison combiSecrete;
+    int nbCourant1 = 0;
+    int nbCourant2 = 0;
+    int nbCourant3 = 0;
+    int nbCourant4 = 0;
+    
     /**
      * Creates new form main_cadenas
      */
@@ -67,9 +72,19 @@ public class main_cadenas extends javax.swing.JFrame {
         getContentPane().add(texte_intro, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
         up_chiffre_1.setText("/\\");
+            up_chiffre_1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    up_chiffre_1ActionPerformed(evt);
+                }
+            });
             getContentPane().add(up_chiffre_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
             up_chiffre_2.setText("/\\");
+                up_chiffre_2.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        up_chiffre_2ActionPerformed(evt);
+                    }
+                });
                 getContentPane().add(up_chiffre_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
                 up_chiffre_3.setText("/\\");
@@ -88,8 +103,8 @@ public class main_cadenas extends javax.swing.JFrame {
                         });
                         getContentPane().add(up_chiffre_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
 
-                        texte_chiffre_0.setText("jLabel2");
-                        getContentPane().add(texte_chiffre_0, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+                        texte_chiffre_0.setText("0");
+                        getContentPane().add(texte_chiffre_0, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 70, 50));
 
                         texte_chiffre_1.setText("jLabel3");
                         getContentPane().add(texte_chiffre_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
@@ -146,12 +161,48 @@ public class main_cadenas extends javax.swing.JFrame {
                     }// </editor-fold>//GEN-END:initComponents
 
     private void up_chiffre_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_up_chiffre_3ActionPerformed
-        // TODO add your handling code here:
+        if (nbCourant3<9){
+    nbCourant3++;
+}
+else {
+      nbCourant3=0;
+}
+texte_chiffre_2.setText(nbCourant3+"");
+
     }//GEN-LAST:event_up_chiffre_3ActionPerformed
 
     private void up_chiffre_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_up_chiffre_4ActionPerformed
-        // TODO add your handling code here:
+        if (nbCourant4<9){
+    nbCourant4++;
+}
+else {
+      nbCourant4=0;
+}
+texte_chiffre_3.setText(nbCourant4+"");
+
     }//GEN-LAST:event_up_chiffre_4ActionPerformed
+
+    private void up_chiffre_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_up_chiffre_1ActionPerformed
+if (nbCourant1<9){
+    nbCourant1++;
+}
+else {
+      nbCourant1=0;
+}
+texte_chiffre_0.setText(nbCourant1+"");
+
+    }//GEN-LAST:event_up_chiffre_1ActionPerformed
+
+    private void up_chiffre_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_up_chiffre_2ActionPerformed
+     if (nbCourant2<9){
+    nbCourant2++;
+}
+else {
+      nbCourant2=0;
+}
+texte_chiffre_1.setText(nbCourant2+"");
+
+    }//GEN-LAST:event_up_chiffre_2ActionPerformed
 
     /**
      * @param args the command line arguments
