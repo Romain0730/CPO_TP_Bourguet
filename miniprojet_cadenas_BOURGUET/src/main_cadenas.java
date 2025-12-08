@@ -116,15 +116,35 @@ public class main_cadenas extends javax.swing.JFrame {
                         getContentPane().add(texte_chiffre_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, -1, -1));
 
                         down_chiffre_1.setText("\\/");
+                        down_chiffre_1.addActionListener(new java.awt.event.ActionListener() {
+                            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                down_chiffre_1ActionPerformed(evt);
+                            }
+                        });
                         getContentPane().add(down_chiffre_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
                         down_chiffre_2.setText("\\/");
+                        down_chiffre_2.addActionListener(new java.awt.event.ActionListener() {
+                            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                down_chiffre_2ActionPerformed(evt);
+                            }
+                        });
                         getContentPane().add(down_chiffre_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
 
                         down_chiffre_3.setText("\\/");
+                        down_chiffre_3.addActionListener(new java.awt.event.ActionListener() {
+                            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                down_chiffre_3ActionPerformed(evt);
+                            }
+                        });
                         getContentPane().add(down_chiffre_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
 
                         down_chiffre_4.setText("\\/");
+                        down_chiffre_4.addActionListener(new java.awt.event.ActionListener() {
+                            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                down_chiffre_4ActionPerformed(evt);
+                            }
+                        });
                         getContentPane().add(down_chiffre_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, -1, -1));
 
                         bouton_tester.setText("Tester");
@@ -203,6 +223,46 @@ else {
 texte_chiffre_1.setText(nbCourant2+"");
 
     }//GEN-LAST:event_up_chiffre_2ActionPerformed
+
+    private void down_chiffre_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_down_chiffre_1ActionPerformed
+       if (nbCourant1>1){
+           nbCourant1++;
+       }
+       else {
+           nbCourant1=9;
+       }
+       texte_chiffre_0.setText(nbCourant1+"");
+    }//GEN-LAST:event_down_chiffre_1ActionPerformed
+
+    private void down_chiffre_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_down_chiffre_2ActionPerformed
+        if (nbCourant2>1){
+           nbCourant2++;
+       }
+       else {
+           nbCourant2=9;
+       }
+       texte_chiffre_1.setText(nbCourant2+"");
+    }//GEN-LAST:event_down_chiffre_2ActionPerformed
+
+    private void down_chiffre_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_down_chiffre_3ActionPerformed
+        if (nbCourant3>1){
+           nbCourant3++;
+       }
+       else {
+           nbCourant3=9;
+       }
+       texte_chiffre_2.setText(nbCourant3+"");
+    }//GEN-LAST:event_down_chiffre_3ActionPerformed
+
+    private void down_chiffre_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_down_chiffre_4ActionPerformed
+        if (nbCourant4>1){
+           nbCourant4++;
+       }
+       else {
+           nbCourant4=9;
+       }
+       texte_chiffre_3.setText(nbCourant4+"");
+    }//GEN-LAST:event_down_chiffre_4ActionPerformed
 
     /**
      * @param args the command line arguments
