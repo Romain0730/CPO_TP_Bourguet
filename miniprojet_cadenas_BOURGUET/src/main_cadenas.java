@@ -16,7 +16,6 @@ public class main_cadenas extends javax.swing.JFrame {
     int nbCourant2 = 0;
     int nbCourant3 = 0;
     int nbCourant4 = 0;
-    
     /**
      * Creates new form main_cadenas
      */
@@ -26,7 +25,8 @@ public class main_cadenas extends javax.swing.JFrame {
         a=(int) (Math.random()*10);
         b=(int) (Math.random()*10);
         c=(int) (Math.random()*10);
-        d=(int) (Math.random()*10);
+        d=(int) (Math.random()*10);      
+        combiSecrete = new Combinaison(a, b, c, d);
     }
 
     /**
@@ -148,6 +148,11 @@ public class main_cadenas extends javax.swing.JFrame {
                         getContentPane().add(down_chiffre_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, -1, -1));
 
                         bouton_tester.setText("Tester");
+                        bouton_tester.addActionListener(new java.awt.event.ActionListener() {
+                            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                bouton_testerActionPerformed(evt);
+                            }
+                        });
                         getContentPane().add(bouton_tester, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, -1));
 
                         texte_lbl_nb_chiffres_exacts.setText("Nombre de chiffres exacts :");
@@ -263,6 +268,22 @@ texte_chiffre_1.setText(nbCourant2+"");
        }
        texte_chiffre_3.setText(nbCourant4+"");
     }//GEN-LAST:event_down_chiffre_4ActionPerformed
+
+    private void bouton_testerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_testerActionPerformed
+      combiTestee = new Combinaison(nbCourant1, nbCourant2, nbCourant3, nbCourant4);
+
+    int[] resultat = combiSecrete.comparer(combiTestee);//Donc créer autre endroit, condition si bonne combi
+
+    texte_tentatives.setText(Integer.toString(Integer.parseInt(texte_tentatives.getText()) +1));//
+    //autre méthode : String texteActuel = texte_tentatives.getText();
+    //int nbTentatives = Integer.parseInt(texteActuel);
+    //nbTentatives++;
+    //texte_tentatives.setText(Integer.toString(nbTentatives));
+    
+    texte_nb_chiffres_exacts.setText(resultat[0] +"");
+    texte_nb_chiffres_haut.setText(resultat[1]+"");
+    texte_nb_chiffres_bas.setText(resultat[2]+"");
+    }//GEN-LAST:event_bouton_testerActionPerformed
 
     /**
      * @param args the command line arguments
