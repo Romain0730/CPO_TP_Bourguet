@@ -7,7 +7,10 @@
  *
  * @author romai
  */
+import java.awt.Font;
+
 public class main_cadenas extends javax.swing.JFrame {
+    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(main_cadenas.class.getName());
     Combinaison combiTestee;
@@ -16,6 +19,7 @@ public class main_cadenas extends javax.swing.JFrame {
     int nbCourant2 = 0;
     int nbCourant3 = 0;
     int nbCourant4 = 0;
+    private int nbTentatives=0;
     /**
      * Creates new form main_cadenas
      */
@@ -27,6 +31,13 @@ public class main_cadenas extends javax.swing.JFrame {
         c=(int) (Math.random()*10);
         d=(int) (Math.random()*10);      
         combiSecrete = new Combinaison(a, b, c, d);
+        nbTentatives = 0;
+    texte_tentatives.setText("0 sur 5");
+    texte_chiffre_0.setFont(new Font("Arial", Font.BOLD, 24));
+    texte_chiffre_1.setFont(new Font("Arial", Font.BOLD, 24));
+    texte_chiffre_2.setFont(new Font("Arial", Font.BOLD, 24));
+    texte_chiffre_3.setFont(new Font("Arial", Font.BOLD, 24));
+    
     }
 
     /**
@@ -63,10 +74,11 @@ public class main_cadenas extends javax.swing.JFrame {
         bouton_tester = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(500, 300));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         texte_intro.setText("Trouvez le bon code en moins de 5 tentatives !");
-        getContentPane().add(texte_intro, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 18, -1, -1));
+        getContentPane().add(texte_intro, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
         up_chiffre_1.setText("/\\");
             up_chiffre_1.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +86,7 @@ public class main_cadenas extends javax.swing.JFrame {
                     up_chiffre_1ActionPerformed(evt);
                 }
             });
-            getContentPane().add(up_chiffre_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 71, -1, -1));
+            getContentPane().add(up_chiffre_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
             up_chiffre_2.setText("/\\");
                 up_chiffre_2.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +94,7 @@ public class main_cadenas extends javax.swing.JFrame {
                         up_chiffre_2ActionPerformed(evt);
                     }
                 });
-                getContentPane().add(up_chiffre_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 71, -1, -1));
+                getContentPane().add(up_chiffre_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
 
                 up_chiffre_3.setText("/\\");
                     up_chiffre_3.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +102,7 @@ public class main_cadenas extends javax.swing.JFrame {
                             up_chiffre_3ActionPerformed(evt);
                         }
                     });
-                    getContentPane().add(up_chiffre_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 71, -1, -1));
+                    getContentPane().add(up_chiffre_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
 
                     up_chiffre_4.setText("/\\");
                         up_chiffre_4.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +110,7 @@ public class main_cadenas extends javax.swing.JFrame {
                                 up_chiffre_4ActionPerformed(evt);
                             }
                         });
-                        getContentPane().add(up_chiffre_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 71, -1, -1));
+                        getContentPane().add(up_chiffre_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, -1, -1));
 
                         down_chiffre_1.setText("\\/");
                         down_chiffre_1.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +118,7 @@ public class main_cadenas extends javax.swing.JFrame {
                                 down_chiffre_1ActionPerformed(evt);
                             }
                         });
-                        getContentPane().add(down_chiffre_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 155, -1, -1));
+                        getContentPane().add(down_chiffre_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
                         down_chiffre_2.setText("\\/");
                         down_chiffre_2.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +126,7 @@ public class main_cadenas extends javax.swing.JFrame {
                                 down_chiffre_2ActionPerformed(evt);
                             }
                         });
-                        getContentPane().add(down_chiffre_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 155, -1, -1));
+                        getContentPane().add(down_chiffre_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, -1, -1));
 
                         down_chiffre_3.setText("\\/");
                         down_chiffre_3.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +134,7 @@ public class main_cadenas extends javax.swing.JFrame {
                                 down_chiffre_3ActionPerformed(evt);
                             }
                         });
-                        getContentPane().add(down_chiffre_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 155, -1, -1));
+                        getContentPane().add(down_chiffre_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
 
                         down_chiffre_4.setText("\\/");
                         down_chiffre_4.addActionListener(new java.awt.event.ActionListener() {
@@ -130,43 +142,48 @@ public class main_cadenas extends javax.swing.JFrame {
                                 down_chiffre_4ActionPerformed(evt);
                             }
                         });
-                        getContentPane().add(down_chiffre_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 155, -1, -1));
+                        getContentPane().add(down_chiffre_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, -1, -1));
 
                         texte_chiffre_0.setText("0");
-                        getContentPane().add(texte_chiffre_0, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 112, 39, 30));
+                        texte_chiffre_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                        getContentPane().add(texte_chiffre_0, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 20, 30));
 
-                        texte_chiffre_1.setText("jLabel2");
-                        getContentPane().add(texte_chiffre_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 119, -1, -1));
+                        texte_chiffre_1.setText("0");
+                        texte_chiffre_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                        getContentPane().add(texte_chiffre_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
 
-                        texte_chiffre_2.setText("jLabel3");
-                        getContentPane().add(texte_chiffre_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 119, -1, -1));
+                        texte_chiffre_2.setText("0");
+                        texte_chiffre_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                        getContentPane().add(texte_chiffre_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
-                        texte_chiffre_3.setText("jLabel4");
-                        getContentPane().add(texte_chiffre_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 119, -1, -1));
+                        texte_chiffre_3.setText("0");
+                        texte_chiffre_3.setAlignmentX(0.5F);
+                        texte_chiffre_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                        getContentPane().add(texte_chiffre_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 20, 30));
 
-                        texte_lbl_nbchiffres_exacts.setText("Nombre de chiffres exacts:");
-                        getContentPane().add(texte_lbl_nbchiffres_exacts, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 217, -1, -1));
+                        texte_lbl_nbchiffres_exacts.setText("Nombre de chiffres exacts :");
+                        getContentPane().add(texte_lbl_nbchiffres_exacts, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
-                        texte_lbl_nbchiffres_haut.setText("Nombre de chiffres trop hauts:");
-                        getContentPane().add(texte_lbl_nbchiffres_haut, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 280, -1, -1));
+                        texte_lbl_nbchiffres_haut.setText("Nombre de chiffres trop hauts :");
+                        getContentPane().add(texte_lbl_nbchiffres_haut, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
-                        texte_lbl_nbchiffres_bas.setText("Nombre de chiffres trop bas:");
-                        getContentPane().add(texte_lbl_nbchiffres_bas, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 312, -1, -1));
+                        texte_lbl_nbchiffres_bas.setText("Nombre de chiffres trop bas :");
+                        getContentPane().add(texte_lbl_nbchiffres_bas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
 
                         texte_nb_chiffres_exacts.setText("0");
-                        getContentPane().add(texte_nb_chiffres_exacts, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 209, 32, 33));
+                        getContentPane().add(texte_nb_chiffres_exacts, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 32, 33));
 
                         texte_nb_chiffres_haut.setText("0");
-                        getContentPane().add(texte_nb_chiffres_haut, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 260, -1, -1));
+                        getContentPane().add(texte_nb_chiffres_haut, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
 
                         texte_nb_chiffres_bas.setText("0");
-                        getContentPane().add(texte_nb_chiffres_bas, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 312, -1, -1));
+                        getContentPane().add(texte_nb_chiffres_bas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, -1, -1));
 
-                        texte_score.setText("0 sur 5");
-                        getContentPane().add(texte_score, new org.netbeans.lib.awtextra.AbsoluteConstraints(486, 260, -1, -1));
+                        texte_score.setText("Tentatives");
+                        getContentPane().add(texte_score, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, -1, -1));
 
-                        texte_tentatives.setText("Tentatives");
-                        getContentPane().add(texte_tentatives, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 195, -1, -1));
+                        texte_tentatives.setText("0 sur 5");
+                        getContentPane().add(texte_tentatives, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
 
                         bouton_recommencer.setText("Recommencer");
                         bouton_recommencer.addActionListener(new java.awt.event.ActionListener() {
@@ -174,7 +191,7 @@ public class main_cadenas extends javax.swing.JFrame {
                                 bouton_recommencerActionPerformed(evt);
                             }
                         });
-                        getContentPane().add(bouton_recommencer, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 277, -1, -1));
+                        getContentPane().add(bouton_recommencer, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
 
                         bouton_tester.setText("Tester");
                         bouton_tester.addActionListener(new java.awt.event.ActionListener() {
@@ -182,7 +199,7 @@ public class main_cadenas extends javax.swing.JFrame {
                                 bouton_testerActionPerformed(evt);
                             }
                         });
-                        getContentPane().add(bouton_tester, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 133, -1, -1));
+                        getContentPane().add(bouton_tester, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, -1, -1));
 
                         pack();
                     }// </editor-fold>//GEN-END:initComponents
@@ -190,21 +207,22 @@ public class main_cadenas extends javax.swing.JFrame {
     private void bouton_testerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_testerActionPerformed
         combiTestee = new Combinaison(nbCourant1, nbCourant2, nbCourant3, nbCourant4);
 
-    int[] resultat = combiSecrete.comparer(combiTestee);//Donc créer autre endroit, condition si bonne combi
-
-    texte_tentatives.setText(Integer.toString(Integer.parseInt(texte_tentatives.getText()) +1));//
-    //autre méthode : String texteActuel = texte_tentatives.getText();
-    //int nbTentatives = Integer.parseInt(texteActuel);
-    //nbTentatives++;
-    //texte_tentatives.setText(Integer.toString(nbTentatives));
+    int[] resultat = combiTestee.comparer(combiSecrete);//Donc créer autre endroit, condition si bonne combi
+    nbTentatives++;
+    texte_tentatives.setText(nbTentatives +"sur 5");
     
     texte_nb_chiffres_exacts.setText(resultat[0] +"");
     texte_nb_chiffres_haut.setText(resultat[1]+"");
     texte_nb_chiffres_bas.setText(resultat[2]+"");
+    
+    if (resultat[0]==4) {
+        javax.swing.JOptionPane.showMessageDialog(this,"Bravo la combinaison a ete trouvée !");
+    }
     }//GEN-LAST:event_bouton_testerActionPerformed
 
     private void bouton_recommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_recommencerActionPerformed
-        texte_tentatives.setText(0+"");
+        nbTentatives =0;
+        texte_tentatives.setText("0 sur 5");
         texte_chiffre_0.setText(0+"");
         texte_chiffre_1.setText(0+"");
         texte_chiffre_2.setText(0+"");
