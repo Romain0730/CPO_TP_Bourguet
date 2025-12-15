@@ -16,22 +16,22 @@ public class Combinaison {
     }
 
     // Méthode pour comparer avec une autre combinaison
-    public int[] comparer(Combinaison autre) {
+    public int[] comparer(Combinaison secret) {
         int exacts = 0;
         int tropHaute = 0;
-        int tropBasse = 0;
+        int tropBas = 0;
 
         for (int i = 0; i < 4; i++) {
-            if (autre.chiffres[i] == this.chiffres[i]) {
+            if (this.chiffres[i] == secret.chiffres[i]) {
                 exacts++;
-            } else if (autre.chiffres[i] > this.chiffres[i]) {
+            } else if (this.chiffres[i] > secret.chiffres[i]) {
                 tropHaute++;
             } else {
-                tropBasse++;
+                tropBas++;
             }
         }
 
-        return new int[]{exacts, tropHaute, tropBasse};
+        return new int[]{exacts, tropHaute, tropBas};
     }
 
     public String toString() {
