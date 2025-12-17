@@ -33,6 +33,11 @@ public class LightOff_BOURGUET_version_console {
        
        System.out.println("etat brut cellule 1 (getEtat) : " + Cellule1.getEtat());
        System.out.println("etat brut cellule 2 (getEtat) : " + Cellule2.getEtat());
+       
+       GrilleDeJeux grille = new GrilleDeJeux(3);
+
+    System.out.println("Affichage de la grille :");
+    System.out.println(grille);
     }
     
 }
