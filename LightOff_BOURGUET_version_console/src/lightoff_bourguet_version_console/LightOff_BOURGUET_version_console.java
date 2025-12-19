@@ -18,17 +18,14 @@ public class LightOff_BOURGUET_version_console {
         System.out.println("Grille initiale :");
         System.out.println(grille);
 
-        // Test e : activer une ligne
         grille.activerLigneDeCellules(2);
         System.out.println("Après activation de la ligne 2 :");
         System.out.println(grille);
 
-        // Test e : activer une colonne
         grille.activerColonneDeCellules(1);
         System.out.println("Après activation de la colonne 1 :");
         System.out.println(grille);
 
-        // Test e : diagonales
         grille.activerDiagonaleDescendante();
         System.out.println("Après activation de la diagonale descendante :");
         System.out.println(grille);
@@ -37,7 +34,6 @@ public class LightOff_BOURGUET_version_console {
         System.out.println("Après activation de la diagonale montante :");
         System.out.println(grille);
 
-        // Test e : mélange aléatoire
         grille.melangerMatriceAleatoirement(10);
         System.out.println("Après mélange aléatoire :");
         System.out.println(grille);
