@@ -9,13 +9,13 @@ import java.util.Random;
  * @author romai
  */
 public class GrilleDeJeu {
+    //Matrice contenant les cellules lumineuses
     private CelluleLumineuse[][] matriceCellules;
     private int nbLignes;
     private int nbColonnes;
 
-   
-    
-    
+   //Constructeur de la grille de jeu.
+     // Initialise la matrice et crée toutes les cellules lumineuses.
     public GrilleDeJeu(int p_nbLignes, int p_nbColonnes) {
         nbLignes = p_nbLignes;
         nbColonnes = p_nbColonnes;
@@ -54,6 +54,7 @@ public class GrilleDeJeu {
         }
     }
 }
+    //Vérifie si toutes les cellules de la grille sont éteintes.
     public boolean cellulesToutesEteintes() {
     for (int i = 0; i < nbLignes; i++) {
         for (int j = 0; j < nbColonnes; j++) {
@@ -64,7 +65,7 @@ public class GrilleDeJeu {
     }
     return true;
 }
-
+//Active aléatoirement une ligne, une colonne ou une diagonale.
     public void activerLigneColonneOuDiagonaleAleatoire(){
         Random rand = new Random();
     int choix = rand.nextInt(4);
@@ -82,6 +83,7 @@ public class GrilleDeJeu {
         activerLigneColonneOuDiagonaleAleatoire();
       }
     }
+    //Retourne une représentation textuelle de la grille.
     @Override
     public String toString(){
         String resultat ="";
