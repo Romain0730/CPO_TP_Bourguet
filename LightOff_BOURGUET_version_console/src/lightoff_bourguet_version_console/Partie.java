@@ -12,38 +12,61 @@ public class Partie {
     private GrilleDeJeu grille;
     private int nbCoups;
 
+    //Constructeur de la classe Partie.
+     //Initialise une nouvelle grille 5x5 et met le nombre de coups à zéro
     public Partie() {
-        this.grille = new GrilleDeJeu();
-        this.nbCoups = 0;
-    }
-
-    public void initialiserPartie() {
-        grille.melangerGrille();
+        grille = new GrilleDeJeu(5,5);
         nbCoups = 0;
     }
 
+    public void initialiserPartie() {
+        grille.melangerMatriceAleatoirement(10);
+        nbCoups = 0;
+    }
+
+     //Lance la partie et gère la boucle de jeu.
+     // Tant que toutes les cellules ne sont pas éteintes, le joueur peut
+     //effectuer des actions sur la grille.
     public void lancerPartie() {
         Scanner sc = new Scanner(System.in);
 
+        initialiserPartie();
         System.out.println("=== Début de la partie LightOff ===");
-        grille.afficherGrille();
+        System.out.println(grille);
 
+        // Boucle principale du jeu
         while (!grille.cellulesToutesEteintes()) {
 
-            System.out.print("Entrez le numéro de ligne : ");
-            int ligne = sc.nextInt();
+            System.out.println("Choisissez une action :");
+            System.out.println("0 : activer une ligne");
+            System.out.println("1 : activer une colonne");
+            System.out.println("2 : diagonale descendante");
+            System.out.println("3 : diagonale montante");
 
-            System.out.print("Entrez le numéro de colonne : ");
-            int colonne = sc.nextInt();
+            int choix = sc.nextInt();
 
-            grille.activerCellule(ligne, colonne);
+            // Traitement du choix du joueur
+            switch (choix) {
+                case 0 -> {
+                    System.out.print("Numéro de ligne : ");
+                    int l = sc.nextInt();
+                    grille.activerLigneDeCellules(l);
+                }
+                case 1 -> {
+                    System.out.print("Numéro de colonne : ");
+                    int c = sc.nextInt();
+                    grille.activerColonneDeCellules(c);
+                }
+                case 2 -> grille.activerDiagonaleDescendante();
+                case 3 -> grille.activerDiagonaleMontante();
+                default -> System.out.println("Choix invalide");
+            }
+
             nbCoups++;
-
-            grille.afficherGrille();
-            System.out.println("Nombre de coups joués : " + nbCoups);
+            System.out.println(grille);
+            System.out.println("Nombre de coups : " + nbCoups);
         }
 
-        System.out.println("🎉 Bravo ! Toutes les cellules sont éteintes !");
-        System.out.println("Partie gagnée en " + nbCoups + " coups.");
+        System.out.println("🎉 Bravo ! Partie gagnée en " + nbCoups + " coups !");
     }
 }
