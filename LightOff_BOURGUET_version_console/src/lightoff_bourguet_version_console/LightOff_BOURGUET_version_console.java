@@ -15,7 +15,8 @@ public class LightOff_BOURGUET_version_console {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-      //
+     
+        //
 Partie p = new Partie();
         p.lancerPartie();
     }
