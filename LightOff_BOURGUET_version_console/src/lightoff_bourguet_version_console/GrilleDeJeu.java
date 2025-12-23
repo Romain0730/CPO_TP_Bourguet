@@ -27,6 +27,10 @@ public class GrilleDeJeu {
             }
         }
     }
+    public CelluleLumineuse getCellule(int i, int j) {
+    return matriceCellules[i][j];
+}
+
     public void activerLigneDeCellules(int idLigne){
      for (int col = 0; col < nbColonnes; col++) {
         matriceCellules[idLigne][col].activerCellule();
