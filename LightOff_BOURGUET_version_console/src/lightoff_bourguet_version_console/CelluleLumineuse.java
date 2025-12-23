@@ -4,6 +4,7 @@
  */
 package lightoff_bourguet_version_console;
 
+
 /**
  *
  * @author romai
@@ -29,9 +30,9 @@ public class CelluleLumineuse {
     @Override
     public String toString() {
         if (etat) {
-            return "1"; 
+            return "X"; 
         } else {
-            return "0"; 
+            return "O"; 
         }
     }
 }
