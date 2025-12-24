@@ -24,7 +24,23 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     // === Attributs migrés depuis Partie ===
     private GrilleDeJeu grille;
     private int nbCoups;
+    private void jouerCoup(TypeAction action, int index) {
+    switch(action) {
+        case LIGNE -> grille.activerLigneDeCellules(index);
+        case COLONNE -> grille.activerColonneDeCellules(index);
+        case DIAG_MONT -> grille.activerDiagonaleMontante();
+        case DIAG_DESC -> grille.activerDiagonaleDescendante();
+    }
 
+    nbCoups++;
+
+    repaint();
+        NbrTentatives.setText("Tentatives : " + nbCoups);
+    if (grille.cellulesToutesEteintes()) {
+        javax.swing.JOptionPane.showMessageDialog(this,"Bravo vous avez gagné !");
+        
+    }
+}
     /**
      * Creates new form FenetrePrincipale
      */
@@ -85,8 +101,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void initComponents() {
 
         PanneauGrille = new javax.swing.JPanel();
+        btnLigne0 = new javax.swing.JButton();
+        btnDiagMont = new javax.swing.JButton();
+        btnDiagDesc = new javax.swing.JButton();
+        Tentatives = new javax.swing.JLabel();
+        NbrTentatives = new javax.swing.JLabel();
+        btnColonne0 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PanneauGrille.setBackground(new java.awt.Color(102, 0, 255));
         PanneauGrille.setPreferredSize(new java.awt.Dimension(400, 400));
@@ -102,25 +125,68 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(132, Short.MAX_VALUE)
-                .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
-        );
+        getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 60, -1, -1));
+
+        btnLigne0.setText("Inverser Ligne 0");
+        btnLigne0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLigne0ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLigne0, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
+
+        btnDiagMont.setText("inverser DiagMont");
+        btnDiagMont.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDiagMontActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDiagMont, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 19, -1, -1));
+
+        btnDiagDesc.setText("InverserDiagDesc");
+        btnDiagDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDiagDescActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDiagDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 440, -1, -1));
+
+        Tentatives.setText("Tentatives : ");
+        getContentPane().add(Tentatives, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 470, -1, -1));
+
+        NbrTentatives.setText("0");
+        getContentPane().add(NbrTentatives, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 500, -1, -1));
+
+        btnColonne0.setText("Inverser Colonne 0");
+        btnColonne0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnColonne0ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnColonne0, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLigne0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigne0ActionPerformed
+      this.grille.activerLigneDeCellules(0); repaint(); 
+      jouerCoup(TypeAction.LIGNE, 0);
+    }//GEN-LAST:event_btnLigne0ActionPerformed
+
+    private void btnDiagMontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagMontActionPerformed
+       this.grille.activerDiagonaleMontante(); repaint(); 
+       jouerCoup(TypeAction.DIAG_MONT, -1);
+    }//GEN-LAST:event_btnDiagMontActionPerformed
+
+    private void btnDiagDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagDescActionPerformed
+        this.grille.activerDiagonaleDescendante(); repaint();
+        jouerCoup(TypeAction.DIAG_DESC, -1);
+    }//GEN-LAST:event_btnDiagDescActionPerformed
+
+    private void btnColonne0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColonne0ActionPerformed
+        this.grille.activerColonneDeCellules(0); repaint(); 
+      jouerCoup(TypeAction.COLONNE, 0);
+    }//GEN-LAST:event_btnColonne0ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,6 +214,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel NbrTentatives;
     private javax.swing.JPanel PanneauGrille;
+    private javax.swing.JLabel Tentatives;
+    private javax.swing.JButton btnColonne0;
+    private javax.swing.JButton btnDiagDesc;
+    private javax.swing.JButton btnDiagMont;
+    private javax.swing.JButton btnLigne0;
     // End of variables declaration//GEN-END:variables
 }
