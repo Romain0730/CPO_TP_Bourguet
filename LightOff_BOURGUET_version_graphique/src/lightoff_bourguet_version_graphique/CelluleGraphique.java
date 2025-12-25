@@ -13,7 +13,7 @@
 package lightoff_bourguet_version_graphique;
 
 
-
+import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Graphics;
 import lightoff_bourguet_version_console.CelluleLumineuse;
@@ -50,9 +50,14 @@ public class CelluleGraphique extends JButton {
      */
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        // Affiche l'état de la cellule (ex: X ou O)
-        this.setText(celluleLumineuseAssociee.toString());
+    super.paintComponent(g);
+    int w = this.getWidth();
+    int h = this.getHeight();
+    if (celluleLumineuseAssociee.estEteint() == true) {
+        g.setColor(Color.green);
+    } else { 
+        g.setColor(Color.red); 
+    } 
+    g.fillOval(2, 2, w - 4, h - 4);
     }
 }
