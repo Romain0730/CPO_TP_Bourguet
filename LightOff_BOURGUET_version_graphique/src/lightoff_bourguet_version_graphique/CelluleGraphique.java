@@ -24,11 +24,11 @@ import lightoff_bourguet_version_console.CelluleLumineuse;
 public class CelluleGraphique extends JButton {
 
     // Dimensions en pixels
-    private int largeur;
-    private int hauteur;
+    public int largeur;
+    public int hauteur;
 
     // Cellule du modèle associée
-    private CelluleLumineuse celluleLumineuseAssociee;
+    public CelluleLumineuse celluleLumineuseAssociee;
 
     /**
      * Constructeur
