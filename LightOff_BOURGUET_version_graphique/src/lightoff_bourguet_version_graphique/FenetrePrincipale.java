@@ -229,7 +229,7 @@ private void apresAction() {
                 }
             }
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+          
         }
         //</editor-fold>
 
