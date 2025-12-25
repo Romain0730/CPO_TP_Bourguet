@@ -89,7 +89,7 @@ private void apresAction() {
 }
 
 
-    public void initialiserPartie() {
+    private void initialiserPartie() {
         grille.eteindreToutesLesCellules();
         grille.melangerMatriceAleatoirement(10);
         nbCoups = 0;
