@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author romai
  */
 public class Partie {
-    private GrilleDeJeu grille;
+    public GrilleDeJeu grille;
     private int nbCoups;
 
     //Constructeur de la classe Partie.
