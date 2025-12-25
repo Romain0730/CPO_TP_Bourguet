@@ -6,75 +6,78 @@ package lightoff_bourguet_version_graphique;
  */
 
 
+import javax.swing.JButton;
 import java.awt.GridLayout;
 import lightoff_bourguet_version_console.GrilleDeJeu;
-import lightoff_bourguet_version_graphique.CelluleGraphique;
-import lightoff_bourguet_version_console.CelluleLumineuse;
-import lightoff_bourguet_version_console.Partie;
+
 
 /**
  *
  * @author romai
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
- 
-    private static final java.util.logging.Logger logger =
-        java.util.logging.Logger.getLogger(FenetrePrincipale.class.getName());
-
+    
     // === Attributs migrés depuis Partie ===
     private GrilleDeJeu grille;
     private int nbCoups;
-    private void jouerCoup(TypeAction action, int index) {
-    switch(action) {
-        case LIGNE -> grille.activerLigneDeCellules(index);
-        case COLONNE -> grille.activerColonneDeCellules(index);
-        case DIAG_MONT -> grille.activerDiagonaleMontante();
-        case DIAG_DESC -> grille.activerDiagonaleDescendante();
-    }
-
-    nbCoups++;
-
-    repaint();
-        NbrTentatives.setText("Tentatives : " + nbCoups);
-    if (grille.cellulesToutesEteintes()) {
-        javax.swing.JOptionPane.showMessageDialog(this,"Bravo vous avez gagné !");
-        
-    }
-}
+    
+    
     /**
      * Creates new form FenetrePrincipale
      */
     public FenetrePrincipale() {
-        initComponents();
+    initComponents(); // initialise les composants NetBeans
 
-        int nbLignes = 10;
-        int nbColonnes = 10;
+    int nbLignes = 10;
+    int nbColonnes = 10;
 
-        // Initialisation de la grille logique
-        this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
-        this.nbCoups = 0;
+    // Initialisation de la grille logique
+    this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
+    this.nbCoups = 0;
 
-        // Initialisation de la partie
-        initialiserPartie();
+    // Configuration du panneau vertical existant créé par NetBeans
+    PanneauBoutonsVert.setLayout(new GridLayout(nbLignes, 1));
 
-        // Création de la grille graphique
-        initialiserGrille(nbLignes, nbColonnes);
+    // Création des boutons verticaux (une ligne = un bouton)
+    for (int i = 0; i < nbLignes; i++) {
+        JButton bouton_ligne = new JButton("Ligne " + i);
+        final int index = i; // nécessaire pour l'action
+        bouton_ligne.addActionListener(e -> {
+            grille.activerLigneDeCellules(index); // inverse la ligne correspondante
+            repaint(); // rafraîchit l'affichage
+            apresAction(); // incrémente le compteur et vérifie la victoire
+        });
+        PanneauBoutonsVert.add(bouton_ligne);
     }
 
+    // Ajuste la taille et rafraîchit l'affichage
+    this.pack();
+    this.revalidate();
 
-    /**
-     * Initialise la partie : éteint toutes les cellules puis mélange la grille
-     */
+    // Initialisation de la partie
+    initialiserPartie();
+
+    // Initialisation de la grille graphique principale
+    initialiserGrille(nbLignes, nbColonnes);
+}
+    
+private void apresAction() {
+    nbCoups++;
+    NbrTentatives.setText(String.valueOf(nbCoups));
+
+    if (grille.cellulesToutesEteintes()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Bravo ! Victoire en " + nbCoups + " coups");
+    }
+}
+
+
     public void initialiserPartie() {
         grille.eteindreToutesLesCellules();
         grille.melangerMatriceAleatoirement(10);
         nbCoups = 0;
     }
 
-
-    /**
-     * Initialise l'affichage graphique de la grille (boutons)
-     */
     private void initialiserGrille(int nbLignes, int nbColonnes) {
 
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
@@ -107,6 +110,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         Tentatives = new javax.swing.JLabel();
         NbrTentatives = new javax.swing.JLabel();
         btnColonne0 = new javax.swing.JButton();
+        PanneauBoutonsVert = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -125,7 +129,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
-        getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 60, -1, -1));
+        getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, -1, -1));
 
         btnLigne0.setText("Inverser Ligne 0");
         btnLigne0.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +145,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 btnDiagMontActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDiagMont, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 19, -1, -1));
+        getContentPane().add(btnDiagMont, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 33, 110, 20));
 
         btnDiagDesc.setText("InverserDiagDesc");
         btnDiagDesc.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +153,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 btnDiagDescActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDiagDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 440, -1, -1));
+        getContentPane().add(btnDiagDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, -1, -1));
 
         Tentatives.setText("Tentatives : ");
         getContentPane().add(Tentatives, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 470, -1, -1));
@@ -165,27 +169,47 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         getContentPane().add(btnColonne0, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
+        PanneauBoutonsVert.setBackground(new java.awt.Color(51, 0, 255));
+        PanneauBoutonsVert.setForeground(new java.awt.Color(51, 51, 255));
+
+        javax.swing.GroupLayout PanneauBoutonsVertLayout = new javax.swing.GroupLayout(PanneauBoutonsVert);
+        PanneauBoutonsVert.setLayout(PanneauBoutonsVertLayout);
+        PanneauBoutonsVertLayout.setHorizontalGroup(
+            PanneauBoutonsVertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 110, Short.MAX_VALUE)
+        );
+        PanneauBoutonsVertLayout.setVerticalGroup(
+            PanneauBoutonsVertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(PanneauBoutonsVert, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 110, 400));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLigne0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigne0ActionPerformed
-      this.grille.activerLigneDeCellules(0); repaint(); 
-      jouerCoup(TypeAction.LIGNE, 0);
+      this.grille.activerLigneDeCellules(0); 
+      repaint(); 
+      apresAction();
     }//GEN-LAST:event_btnLigne0ActionPerformed
 
     private void btnDiagMontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagMontActionPerformed
-       this.grille.activerDiagonaleMontante(); repaint(); 
-       jouerCoup(TypeAction.DIAG_MONT, -1);
+       this.grille.activerDiagonaleMontante(); 
+       repaint(); 
+       apresAction();
     }//GEN-LAST:event_btnDiagMontActionPerformed
 
     private void btnDiagDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagDescActionPerformed
-        this.grille.activerDiagonaleDescendante(); repaint();
-        jouerCoup(TypeAction.DIAG_DESC, -1);
+        this.grille.activerDiagonaleDescendante();
+        repaint();
+        apresAction();
     }//GEN-LAST:event_btnDiagDescActionPerformed
 
     private void btnColonne0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColonne0ActionPerformed
-        this.grille.activerColonneDeCellules(0); repaint(); 
-      jouerCoup(TypeAction.COLONNE, 0);
+        this.grille.activerColonneDeCellules(0);
+        repaint(); 
+        apresAction();
     }//GEN-LAST:event_btnColonne0ActionPerformed
 
     /**
@@ -215,6 +239,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NbrTentatives;
+    private javax.swing.JPanel PanneauBoutonsVert;
     private javax.swing.JPanel PanneauGrille;
     private javax.swing.JLabel Tentatives;
     private javax.swing.JButton btnColonne0;
