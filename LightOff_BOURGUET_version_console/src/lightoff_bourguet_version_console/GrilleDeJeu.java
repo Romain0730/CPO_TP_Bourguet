@@ -10,9 +10,9 @@ import java.util.Random;
  */
 public class GrilleDeJeu {
     //Matrice contenant les cellules lumineuses
-    private CelluleLumineuse[][] matriceCellules;
-    private int nbLignes;
-    private int nbColonnes;
+    public CelluleLumineuse[][] matriceCellules;
+    public int nbLignes;
+    public int nbColonnes;
 
    //Constructeur de la grille de jeu.
      // Initialise la matrice et crée toutes les cellules lumineuses.
