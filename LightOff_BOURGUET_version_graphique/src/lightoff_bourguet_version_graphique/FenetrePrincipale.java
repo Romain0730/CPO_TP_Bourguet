@@ -1,93 +1,120 @@
 package lightoff_bourguet_version_graphique;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import lightoff_bourguet_version_console.GrilleDeJeu;
 
-
-/**
- *
- * @author romai
- */
 public class FenetrePrincipale extends javax.swing.JFrame {
-    
+
     // === Attributs migrés depuis Partie ===
     private GrilleDeJeu grille;
     private int nbCoups;
-    
-    
+    private int coupsMax;
+
     /**
      * Creates new form FenetrePrincipale
      */
     public FenetrePrincipale() {
-    initComponents(); // initialise les composants NetBeans
-    this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-    int nbLignes = 10;
-    int nbColonnes = 10;
+        initComponents(); // initialise les composants NetBeans
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 
-    // Initialisation de la grille logique
-    this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
-    this.nbCoups = 0;
+        // Choix de la difficulté
+        String[] options = {"Facile", "Moyen", "Difficile"};
+        int choix = JOptionPane.showOptionDialog(
+            this,
+            "Choisissez la difficulté",
+            "Difficulté",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            options,
+            options[1] // Moyen par défaut
+        );
 
-    // Configuration du panneau vertical existant créé par NetBeans
-    PanneauBoutonsVert.setLayout(new GridLayout(nbLignes, 1));
+        String niveauChoisi;
+        if (choix == 0) niveauChoisi = "FACILE";
+        else if (choix == 1) niveauChoisi = "MOYEN";
+        else if (choix == 2) niveauChoisi = "DIFFICILE";
+        else niveauChoisi = "MOYEN";
 
-    // Création des boutons verticaux (une ligne = un bouton)
-    for (int i = 0; i < nbLignes; i++) {
-        JButton bouton_ligne = new JButton("Ligne " + i);
-        final int index = i; // nécessaire pour l'action
-        bouton_ligne.addActionListener(e -> {
-            grille.activerLigneDeCellules(index); // inverse la ligne correspondante
-            repaint(); // rafraîchit l'affichage
-            apresAction(); // incrémente le compteur et vérifie la victoire
-        });
-        PanneauBoutonsVert.add(bouton_ligne);
+        // Appliquer la difficulté et initialiser la grille logique
+        appliquerDifficulte(niveauChoisi);
+
+        // Déclaration des dimensions après création de la grille (correctement dans le constructeur)
+        int nbLignes = grille.getNbLignes();
+        int nbColonnes = grille.getNbColonnes();
+
+        // Configuration des panneaux de boutons verticaux
+        PanneauBoutonsVert.setLayout(new GridLayout(nbLignes, 1));
+        for (int i = 0; i < nbLignes; i++) {
+            JButton bouton_ligne = new JButton("Ligne " + i);
+            final int index = i;
+            bouton_ligne.addActionListener(e -> {
+                grille.activerLigneDeCellules(index);
+                repaint();
+                apresAction();
+            });
+            PanneauBoutonsVert.add(bouton_ligne);
+        }
+
+        // Configuration des panneaux de boutons horizontaux
+        PanneauBoutonsHori.setLayout(new GridLayout(nbColonnes, 1));
+        for (int i = 0; i < nbColonnes; i++) {
+            JButton bouton_colonne = new JButton("Colonne " + i);
+            final int index = i;
+            bouton_colonne.addActionListener(e -> {
+                grille.activerColonneDeCellules(index);
+                repaint();
+                apresAction();
+            });
+            PanneauBoutonsHori.add(bouton_colonne);
+        }
+
+        // Ajuste la taille et rafraîchit l'affichage
+        this.pack();
+        this.revalidate();
+
+        // Initialisation de la partie et de la grille graphique
+        initialiserPartie();
+        initialiserGrille(nbLignes, nbColonnes);
     }
 
-    // Ajuste la taille et rafraîchit l'affichage
-    this.pack();
-    this.revalidate();
-    
-    PanneauBoutonsHori.setLayout(new GridLayout(nbColonnes, 1));
-    
-    for (int i = 0; i < nbColonnes; i++) {
-        JButton bouton_colonne = new JButton("Colonne " + i);
-        final int index = i; // nécessaire pour l'action
-        bouton_colonne.addActionListener(e -> {
-            grille.activerColonneDeCellules(index); // inverse la ligne correspondante
-            repaint(); // rafraîchit l'affichage
-            apresAction(); // incrémente le compteur et vérifie la victoire
-        });
-        PanneauBoutonsHori.add(bouton_colonne);
+    private void appliquerDifficulte(String niveau) {
+        int nbMelanges = 10;
+        int nbLignes = 10;
+        int nbColonnes = 10;
+
+        switch(niveau.toUpperCase()) {
+            case "FACILE":
+                nbLignes = 5; nbColonnes = 5; nbMelanges = 5; coupsMax = 30; break;
+            case "MOYEN":
+                nbLignes = 8; nbColonnes = 8; nbMelanges = 10; coupsMax = 40; break;
+            case "DIFFICILE":
+                nbLignes = 10; nbColonnes = 10; nbMelanges = 20; coupsMax = 50; break;
+            default:
+                coupsMax = 40;
+        }
+
+        grille = new GrilleDeJeu(nbLignes, nbColonnes);
+        nbCoups = 0;
+        grille.eteindreToutesLesCellules();
+        grille.melangerMatriceAleatoirement(nbMelanges);
     }
 
-    // Ajuste la taille et rafraîchit l'affichage
-    this.pack();
-    this.revalidate();
+    private void apresAction() {
+        nbCoups++;
+        NbrTentatives.setText(String.valueOf(nbCoups));
 
-    // Initialisation de la partie
-    initialiserPartie();
-
-    // Initialisation de la grille graphique principale
-    initialiserGrille(nbLignes, nbColonnes);
-}
-    
-private void apresAction() {
-    nbCoups++;
-    NbrTentatives.setText(String.valueOf(nbCoups));
-
-    if (grille.cellulesToutesEteintes()) {
-        FenetreVictoire f = new FenetreVictoire() ;
-        f.setVisible(true) ;
+        if (grille.cellulesToutesEteintes()) {
+            FenetreVictoire f = new FenetreVictoire();
+            f.setVisible(true);
+        } else if (nbCoups >= coupsMax) {
+            JOptionPane.showMessageDialog(this,
+                "Perdu ! Nombre de coups maximum atteint 😢");
+            this.dispose();
+        }
     }
-}
-
 
     private void initialiserPartie() {
         grille.eteindreToutesLesCellules();
@@ -96,13 +123,10 @@ private void apresAction() {
     }
 
     private void initialiserGrille(int nbLignes, int nbColonnes) {
-
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
-
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
-                CelluleGraphique boutonCellule =
-                new CelluleGraphique(
+                CelluleGraphique boutonCellule = new CelluleGraphique(
                     grille.getCellule(i, j),
                     40,
                     40
@@ -111,6 +135,7 @@ private void apresAction() {
             }
         }
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
