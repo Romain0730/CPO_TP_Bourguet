@@ -49,7 +49,10 @@ public class CelluleGraphique extends JButton {
      * Dessin du composant graphique
      */
     @Override
-    protected void paintComponent(Graphics g) {
+
+    
+
+protected void paintComponent(Graphics g) {
     super.paintComponent(g);
     int w = this.getWidth();
     int h = this.getHeight();
