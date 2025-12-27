@@ -14,6 +14,13 @@ public class GrilleDeJeu {
     public int nbLignes;
     public int nbColonnes;
 
+    public int getNbLignes() {
+    return nbLignes;
+}
+
+public int getNbColonnes() {
+    return nbColonnes;
+}
    //Constructeur de la grille de jeu.
      // Initialise la matrice et crée toutes les cellules lumineuses.
     public GrilleDeJeu(int p_nbLignes, int p_nbColonnes) {
