@@ -18,6 +18,7 @@ public class FenetreVictoire extends javax.swing.JFrame {
      */
     public FenetreVictoire() {
         initComponents();
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -30,27 +31,16 @@ public class FenetreVictoire extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        image_victoire = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Bravo, vous avez gagnez !!!");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, -20, 187, 102));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
-        );
+        image_victoire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lightoff_bourguet_version_graphique/victoireOL.jpg"))); // NOI18N
+        getContentPane().add(image_victoire, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 280, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -81,6 +71,7 @@ public class FenetreVictoire extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel image_victoire;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
