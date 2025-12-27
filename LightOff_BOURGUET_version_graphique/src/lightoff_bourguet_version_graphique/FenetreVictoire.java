@@ -37,10 +37,10 @@ public class FenetreVictoire extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Bravo, vous avez gagnez !!!");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, -20, 187, 102));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 187, 102));
 
         image_victoire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lightoff_bourguet_version_graphique/victoireOL.jpg"))); // NOI18N
-        getContentPane().add(image_victoire, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 280, 240));
+        getContentPane().add(image_victoire, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 300, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
