@@ -22,7 +22,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // Choix de la difficulté
         String[] options = {"Facile", "Moyen", "Difficile"};
         int choix = JOptionPane.showOptionDialog(
-            this,
+            null,
             "Choisissez la difficulté",
             "Difficulté",
             JOptionPane.DEFAULT_OPTION,
@@ -33,10 +33,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
 
         String niveauChoisi;
-        if (choix == 0) niveauChoisi = "FACILE";
-        else if (choix == 1) niveauChoisi = "MOYEN";
-        else if (choix == 2) niveauChoisi = "DIFFICILE";
-        else niveauChoisi = "MOYEN";
+        niveauChoisi = switch (choix) {
+            case 0 -> "FACILE";
+            case 1 -> "MOYEN";
+            case 2 -> "DIFFICILE";
+            default -> "MOYEN";
+        };
 
         // Appliquer la difficulté et initialiser la grille logique
         appliquerDifficulte(niveauChoisi);
@@ -86,14 +88,16 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         int nbColonnes = 10;
 
         switch(niveau.toUpperCase()) {
-            case "FACILE":
-                nbLignes = 5; nbColonnes = 5; nbMelanges = 5; coupsMax = 30; break;
-            case "MOYEN":
-                nbLignes = 8; nbColonnes = 8; nbMelanges = 10; coupsMax = 40; break;
-            case "DIFFICILE":
-                nbLignes = 10; nbColonnes = 10; nbMelanges = 20; coupsMax = 50; break;
-            default:
-                coupsMax = 40;
+            case "FACILE" -> {
+                nbLignes = 5; nbColonnes = 5; nbMelanges = 5; coupsMax = 30;
+            }
+            case "MOYEN" -> {
+                nbLignes = 8; nbColonnes = 8; nbMelanges = 10; coupsMax = 40;
+            }
+            case "DIFFICILE" -> {
+                nbLignes = 10; nbColonnes = 10; nbMelanges = 20; coupsMax = 50;
+            }
+            default -> coupsMax = 40;
         }
 
         grille = new GrilleDeJeu(nbLignes, nbColonnes);
