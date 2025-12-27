@@ -27,7 +27,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      */
     public FenetrePrincipale() {
     initComponents(); // initialise les composants NetBeans
-
+    this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     int nbLignes = 10;
     int nbColonnes = 10;
 
